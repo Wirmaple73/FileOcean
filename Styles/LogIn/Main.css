@@ -309,7 +309,7 @@ body{
     background-color: var(--color-blue);
 }
 .sub-button--active:hover > .sub-button__action{
-    transform: scale(60);
+    transform: scale(120);
 }
 .sub-button__action{
     position: absolute;
