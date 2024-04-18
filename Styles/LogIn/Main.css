@@ -12,8 +12,8 @@ input,button{
 :root{
     --color__black-royal : #09090B;
     --color__gray : #71717A;
-    --color-blue: #8098F9;
-    --color-blue-royal:#6172F3;
+    --color__blue: #8098F9;
+    --color__blue-royal:#6172F3;
     --color__blue-light:rgba(128, 152, 249, 0.5);
     --color__blue-smooth-light : rgba(128, 152, 249, 0.12);
 }
@@ -30,10 +30,14 @@ html{
 }
 /*---Body---*/
 body{
+    background-image: url("../../Asset/Pictures/Background.png");
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-attachment: fixed;
+    background-size: cover;
     position: relative;
     font-family: "PoppinsX", serif;
     padding-inline: 1.6rem;
-    background-color: #ffffff;
     height: 100vh;
     display: flex;
     justify-content: center;
@@ -200,7 +204,7 @@ body{
     background-color: transparent;
 }
 .input-box--focus{
-    border-color: var(--color-blue-royal);
+    border-color: var(--color__blue-royal);
 }
 .input-box--invalid{
     border-color: #d72020;
@@ -258,7 +262,7 @@ body{
     gap: 0.5rem;
 }
 .form-option__input{
-    accent-color: var(--color-blue);
+    accent-color: var(--color__blue);
     color: #fff;
     display: block;
     width: 1.5rem;
@@ -277,14 +281,14 @@ body{
 }
 .form-option__forgetPass{
     font-size: 1.22rem;
-    color: var(--color-blue);
+    color: var(--color__blue);
     font-weight: 500;
 }
 .form-option__forgetPass::after, .dont-have-account__link::after, .form-option__text--invalid::after{
     content: '';
     display: block;
     width: 100%;
-    border-bottom: 0.16rem solid var(--color-blue);
+    border-bottom: 0.16rem solid var(--color__blue);
     -webkit-transition: all 0.2s ease;
     -moz-transition: all 0.2s ease;
     -ms-transition: all 0.2s ease;
@@ -306,7 +310,7 @@ body{
     background-color: rgba(128, 152, 249, 0.47);
 }
 .sub-button--active{
-    background-color: var(--color-blue);
+    background-color: var(--color__blue);
 }
 .sub-button--active:hover > .sub-button__action{
     transform: scale(120);
@@ -348,12 +352,12 @@ body{
     color: var(--color__gray);
 }
 .dont-have-account__link{
-    color: var(--color-blue);
+    color: var(--color__blue);
     font-weight: 500;
 }
 .form__right{
     position: relative;
-    background-color: var(--color-blue-royal);
+    background-color: var(--color__blue-royal);
 }
 .slider{
     width: 100%;
