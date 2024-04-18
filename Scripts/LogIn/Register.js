@@ -9,10 +9,10 @@ function checkInputValidation(){
     if(hasAcceptTerm){
         acceptTermBtn.nextElementSibling.classList.remove("form-option__text--invalid");
         inputElems.forEach((input) => {
-            (input.dataset.name === "username") && (username = inputValidate.call(input, usernameValidateRegEx, "The entered username is invalid !", false));
-            (input.dataset.name === "email") && (email = inputValidate.call(input, emailValidateRegEx, "The entered email address is invalid !", false));
-            (input.dataset.name === "password") && (pass = inputValidate.call(input, passwordValidateRegEx, "The entered password is either too short or too long !", false));
-            (input.dataset.name === "passwordS2") && (passS2 = inputValidate.call(input, passwordValidateRegEx, "The entered password is either too short or too long !", false));
+            (input.dataset.name === "username") && (username = inputValidate.call(input, usernameValidateRegEx, "The entered username is invalid.", false));
+            (input.dataset.name === "email") && (email = inputValidate.call(input, emailValidateRegEx, "The entered email address is invalid.", false));
+            (input.dataset.name === "password") && (pass = inputValidate.call(input, passwordValidateRegEx, "The entered password is either too short or too long.", false));
+            (input.dataset.name === "passwordS2") && (passS2 = inputValidate.call(input, passwordValidateRegEx, "The entered password is either too short or too long.", false));
             console.log(username, email, pass, passS2)
             if(username && email && pass && passS2){
                 if(pass !== passS2){
