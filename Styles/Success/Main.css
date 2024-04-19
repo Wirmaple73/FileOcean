@@ -1,0 +1,15 @@
+/*---Body---*/
+body{
+    background-image: url("../../Asset/Pictures/Background.png");
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-attachment: fixed;
+    background-size: cover;
+    position: relative;
+    font-family: "PoppinsX", serif;
+    padding-inline: 1.6rem;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
