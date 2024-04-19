@@ -16,4 +16,3 @@ setTimeout(() => {
 setTimeout(() => {
     location.replace("Index.php");
 }, 5000);
-git 
