@@ -76,7 +76,7 @@ Location::navigateIfUserHasLoginStatus(true, "Index.php");
 	                </div>
 	                <button class="sub-button sub-button--active">
 	                    <span class="sub-button__action"></span>
-	                    <span class="sub-button__text">LOG IN</span>
+	                    <span class="sub-button__text">Log In</span>
 	                </button>
 	                <div class="dont-have-account">
 	                    <span class="dont-have-account__value">Don’t have an account?</span>
