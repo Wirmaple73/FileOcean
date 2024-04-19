@@ -9,6 +9,7 @@
 		<meta charset="UTF-8">
 	    <meta http-equiv="X-UA-Compatible" content="ie=edge">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<link rel="stylesheet" type="text/css" href="StyleS/Main/Main.css">
 		<linK rel="stylesheet" type="text/css" href="Styles/Main/Font.css">
 		<link rel="stylesheet" type="text/css" href="Styles/Main/Main.css">
 		<link rel="stylesheet" type="text/css" href="Styles/Success/Main.css">
