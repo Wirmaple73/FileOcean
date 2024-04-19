@@ -2,12 +2,18 @@
 setTimeout(() => {
     swal.fire({
         icon:"success",
-        title:"Done !",
-        text : "Account created successfully :)",
-        confirmButtonText:"<span>Login Now</span>"
+        title:"Registration Successful",
+        text : "Your account has been successfully created.",
+        confirmButtonText:"<span>Proceed to the main page</span>"
     }).then((result) => {
         if(result.isConfirmed){
-            location.replace("Login.php")
+            location.replace("Index.php")
         }
     });
-},1000)
+},100)
+
+// Automatically redirect the user to the main page after a while
+setTimeout(() => {
+    location.replace("Index.php");
+}, 5000);
+git 

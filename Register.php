@@ -1,8 +1,6 @@
 <?php
 require_once("Classes/Location.php");
-Location::navigateIfUserHasState(true, "Success.php");
-
-ob_start();
+Location::navigateIfUserHasLoginStatus(true, "Index.php");
 ?>
 
 <!DOCTYPE html>
@@ -20,7 +18,7 @@ ob_start();
 	    <div class="modal">
 	        <span class="modal__value"></span>
 	    </div>
-	    <form class="form" method="post" action="<?php echo(basename(htmlspecialchars($_SERVER["PHP_SELF"]))); ?>">
+	    <form class="form" method="post" action="<?php echo(Location::getCurrentFileName()); ?>">
 	        <div class="form__left">
 	            <div class="form-container">
 	                <h1 class="form__header">Create your account</h1>
@@ -112,7 +110,10 @@ require_once("Classes/Modal.php");
 validateInput();
 storeUser();
 
-Location::navigate("Success.php", true);
+echo("
+	<script src='https://cdn.jsdelivr.net/npm/sweetalert2@11'></script>
+	<script type='application/javascript' src='Scripts/Success/Main.js'></script>"
+);
 
 function validateInput(): void {
 	$SAFE_VARIABLE_NAMES = ["username", "email"];
@@ -158,6 +159,5 @@ function storeUser(): void {
 		Modal::displayAndExit("An error occurred while trying to communicate with the database ({$ex->getMessage()}).");
 	}
 	
-	session_start();
 	$_SESSION[User::class] = $user;
 }

@@ -2,19 +2,18 @@
 final class Location {
 	private function __construct() { }
 	
-	public static function navigate(string $url, bool $flushOB = false): void {
-		header("Location: $url");
-		
-		if ($flushOB)
-			ob_end_flush();
-		
-		exit();
+	public static function getCurrentFileName(): string {
+		return basename(htmlspecialchars($_SERVER["PHP_SELF"]));
 	}
 	
-	public static function navigateIfUserHasState(bool $isLoggedIn, string $url, bool $flushOB = false): void {
-		$navigateIfCondition = function(bool $condition) use ($url, $flushOB): void {
+	public static function navigate(string $url): void {
+		echo("<script>location.replace('$url');</script>");
+	}
+	
+	public static function navigateIfUserHasLoginStatus(bool $isLoggedIn, string $url): void {
+		$navigateIfCondition = function(bool $condition) use ($url): void {
 			if ($condition)
-				self::navigate($url, $flushOB);
+				self::navigate($url);
 		};
 		
 		require_once("Classes/User.php");

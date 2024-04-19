@@ -1,8 +1,6 @@
 <?php
 require_once("Classes/Location.php");
-Location::navigateIfUserHasState(true, "Index.php");
-
-ob_start();
+Location::navigateIfUserHasLoginStatus(true, "Index.php");
 ?>
 
 <!DOCTYPE html>
@@ -20,7 +18,7 @@ ob_start();
 	    <div class="modal">
 	        <span class="modal__value"></span>
 	    </div>
-	    <form class="form" method="post" action="<?php echo(basename(htmlspecialchars($_SERVER["PHP_SELF"]))); ?>">
+	    <form class="form" method="post" action="<?php echo(Location::getCurrentFileName()); ?>">
 	        <div class="form__left">
 	            <div class="form-container">
 	                <h1 class="form__header">Login to your Account</h1>
@@ -125,7 +123,7 @@ require_once("Classes/Modal.php");
 validateInput();
 logUserIn();
 
-Location::navigate("Index.php", true);
+Location::navigate("Index.php");
 
 function validateInput(): void {
 	$SAFE_VARIABLE_NAMES = ["email"];
