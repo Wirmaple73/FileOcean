@@ -17,17 +17,6 @@ input,button{
     --color__blue-light:rgba(128, 152, 249, 0.5);
     --color__blue-smooth-light : rgba(128, 152, 249, 0.12);
 }
-/*---For All Element---*/
-html{
-    font-size: 10px;
-    box-sizing: border-box;
-}
-*, *::before, *::after{
-    box-sizing: inherit;
-    text-decoration: none;
-    padding: 0;
-    margin: 0;
-}
 /*---Body---*/
 body{
     background-image: url("../../Asset/Pictures/Background.png");
