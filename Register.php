@@ -1,6 +1,6 @@
 <?php
 require_once("Classes/Location.php");
-Location::navigateIfUserHasState(true, "Index.php");
+Location::navigateIfUserHasState(true, "Success.php");
 
 ob_start();
 ?>
@@ -112,7 +112,7 @@ require_once("Classes/Modal.php");
 validateInput();
 storeUser();
 
-Location::navigate("Index.php", true);
+Location::navigate("Success.php", true);
 
 function validateInput(): void {
 	$SAFE_VARIABLE_NAMES = ["username", "email"];
