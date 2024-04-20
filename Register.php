@@ -112,7 +112,7 @@ validateInput();
 storeUser();
 
 echo("
-	<script src='https://cdn.jsdelivr.net/npm/sweetalert2@11'></script>
+	<script type='application/javascript' src='Scripts/Success/Sweet-Alert.min'></script>
 	<script type='application/javascript' src='Scripts/Success/Main.js'></script>"
 );
 
