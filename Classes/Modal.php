@@ -6,8 +6,9 @@ enum ModalType {
 
 final class Modal {
 	private function __construct() { }
-	
 	public static function display(string $message, ModalType $type = ModalType::Notification, bool $isSuccessful = true): void {
+		$message = addslashes($message);
+		
 		switch ($type) {
 			case ModalType::Notification:
 				$statusMessage = $isSuccessful ? "true" : "false";
