@@ -1,3 +1,5 @@
+/*---Import Files---*/
+@import "../Main/Font.css";
 /*---For All Element---*/
 html{
     font-size: 10px;
@@ -8,4 +10,12 @@ html{
     text-decoration: none;
     padding: 0;
     margin: 0;
+}
+/*---For Better Performance---*/
+a, button{
+    cursor: pointer;
+}
+input,button{
+    border: none;
+    outline: none;
 }

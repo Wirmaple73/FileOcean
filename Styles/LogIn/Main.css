@@ -1,13 +1,3 @@
-/*---Import Files---*/
-@import "../Main/Font.css";
-/*---For Better Performance---*/
-a, button{
-    cursor: pointer;
-}
-input,button{
-    border: none;
-    outline: none;
-}
 /*---Variables---*/
 :root{
     --color__black-royal : #09090B;
