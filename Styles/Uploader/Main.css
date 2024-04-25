@@ -1,0 +1,173 @@
+/*---Variables---*/
+:root{
+    --color__white: #fff;
+    --color__blue-100: #EEF6FF;
+    --color__blue-200:#B2CFF1;
+    --color__blue-300: #4C95EB;
+    --color__gray:#676767;
+    --color__red:#E41D1D;
+    --color__green:#11AF22;
+}
+/*---Body---*/
+body{
+    background-image: url("../../Asset/Pictures/Background.png");
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-attachment: fixed;
+    background-size: cover;
+    font-family: "PoppinsX", serif;
+    height: 100vh;
+    display: flex;
+    padding-inline: 2rem;
+    justify-content: center;
+    align-items: center;
+}
+.swal2-shown, .swal2-height-auto{
+    height: 100vh;
+    width: 100%;
+    display: flex;
+}
+/*---StyleSheet---*/
+.uploader{
+    background-color: var(--color__white);
+    -webkit-border-radius: 0.5rem;
+    -moz-border-radius: 0.5rem;
+    border-radius: 0.5rem;
+    width: 100%;
+    max-width: 49rem;
+    padding: 2rem 3.2rem;
+    text-align: center;
+}
+.uploader__title{
+    font-weight: 600;
+    font-size: 2.4rem;
+}
+.upload-box{
+    display: block;
+    background-color: var(--color__blue-100);
+    margin-block: 2rem 2.5rem;
+    border: 0.35rem dashed var(--color__blue-200);
+    width: 100%;
+    padding: 3rem 0;
+    -webkit-border-radius: 0.5rem;
+    -moz-border-radius: 0.5rem;
+    border-radius: 0.5rem;
+    cursor:cell;
+}
+.upload-box__icon{
+    margin-bottom: 1.5rem;
+}
+.upload-box__description{
+   font-weight: 600;
+    margin-bottom: 0.6rem;
+}
+.upload-box__link{
+    color: var(--color__blue-300);
+    text-decoration: underline 1px solid var(--color__blue-300);
+    cursor: pointer;
+}
+.upload-box__caption{
+    font-size: 1.1rem;
+    font-weight: 400;
+    color: var(--color__gray);
+}
+.xss-section{
+    width: 100%;
+}
+.uploaded-section--active{
+    display: block !important;
+}
+.xss-section.uploaded-section{
+    display: none;
+    margin-top: 1.4rem;
+}
+.xss-title{
+    text-align: left;
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: var(--color__gray);
+}
+.upload-container{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+    padding-block: 1.3rem;
+}
+.upload-item{
+    width: 100%;
+    border:0.2rem solid #E3E3E3;
+    -webkit-border-radius: 0.5rem;
+    -moz-border-radius: 0.5rem;
+    border-radius: 0.5rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.8rem 1rem;
+    position: relative;
+}
+.upload-item--filed{
+    margin-bottom: 1.5rem;
+    border-color: var(--color__red);
+}
+.upload-item--success{
+    border-color: var(--color__green);
+}
+.upload-item__value{
+    font-size: 1.3rem;
+    color: #0F0F0F;
+}
+.upload-item__icon{
+    width: 2rem;
+    height: 2rem;
+    background-size: cover;
+    background-position: center center;
+    cursor: pointer;
+}
+.upload-item--pending > .upload-item__icon{
+    background-image: url("../../Asset/Icons/Close.svg");
+}
+.upload-item--filed > .upload-item__icon{
+    background-image: url("../../Asset/Icons/Close-Error.svg");
+}
+.upload-item--success > .upload-item__icon{
+    background-image: url("../../Asset/Icons/Delete.svg");
+}
+.upload-item--pending > .progress-bar{
+    display: block;
+}
+.progress-bar{
+    display: none;
+    position: absolute;
+    width: 100%;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 0.3rem;
+}
+.progress-bar__item{
+    -webkit-animation: scaleX 4.5s linear forwards;
+    -o-animation: scaleX 4.5s linear forwards;
+    animation: scaleX 4.5s linear forwards;
+    height: 100%;
+    width: 0;
+    border-top-right-radius: 10rem;
+    border-bottom-right-radius: 10rem;
+    background-color: var(--color__blue-300);
+}
+.upload-item--filed > .upload-item__caption{
+    display: block;
+}
+.upload-item__caption{
+    display: none;
+    color: var(--color__red);
+    position: absolute;
+    left: 0;
+    bottom: -2rem;
+}
+@keyframes scaleX {
+    100%{
+        width: 100%;
+    }
+}
