@@ -116,7 +116,7 @@ if ($_SERVER["REQUEST_METHOD"] !== "POST")
 	exit();
 
 require_once("Classes/InputManager.php");
-require_once("Classes/Database.php");
+require_once("Classes/DatabaseConnection.php");
 require_once("Classes/User.php");
 require_once("Classes/Modal.php");
 
@@ -145,9 +145,8 @@ function validateInput(): void {
 
 function logUserIn(): void {
 	try {
-		Database::connect();
-		
-		$result = Database::query("SELECT * FROM user WHERE Email = ?;", "s", $_POST["email"]);
+		$connection = new DatabaseConnection();
+		$result = $connection->query("SELECT * FROM user WHERE Email = ?;", "s", $_POST["email"]);
 		
 		if ($result->num_rows === 0)
 			Modal::displayAndExit("No user with such email address exists.");
@@ -157,12 +156,14 @@ function logUserIn(): void {
 		if (!password_verify($_POST["password"], $row["Password"]))
 			Modal::displayAndExit("The entered password is incorrect.");
 		
-		session_start();
 		$_SESSION[User::class] = new User($row["Username"], $row["Email"], $row["Password"], false);
-		
-		Database::disconnect();
 	}
 	catch (Exception $ex) {
 		Modal::displayAndExit("An error occurred while trying to communicate with the database ({$ex->getMessage()}).");
+	}
+	finally {
+		if (isset($connection)) {
+			$connection->disconnect();
+		}
 	}
 }

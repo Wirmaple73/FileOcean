@@ -103,7 +103,7 @@ if ($_SERVER["REQUEST_METHOD"] !== "POST")
 	exit();
 
 require_once("Classes/InputManager.php");
-require_once("Classes/Database.php");
+require_once("Classes/DatabaseConnection.php");
 require_once("Classes/Assertion.php");
 require_once("Classes/User.php");
 require_once("Classes/Modal.php");
@@ -143,21 +143,25 @@ function storeUser(): void {
 	$user = new User($_POST["username"], $_POST["email"], $_POST["password"]);
 	
 	try {
-		Database::connect();
+		$connection = new DatabaseConnection();
 		
 		$assertion = Assertion::assertAll(
-			new Assertion(Database::query("SELECT COUNT(*) FROM user WHERE Username = ?;", "s", $user->getUsername())->fetch_column() === 0, "A user with the specified username already exists."),
-			new Assertion(Database::query("SELECT COUNT(*) FROM user WHERE Email = ?;", "s", $user->getEmail())->fetch_column() === 0, "This email is already in use by another user.")
+			new Assertion($connection->query("SELECT COUNT(*) FROM user WHERE Username = ?;", "s", $user->getUsername())->fetch_column() === 0, "A user with the specified username already exists."),
+			new Assertion($connection->query("SELECT COUNT(*) FROM user WHERE Email = ?;", "s", $user->getEmail())->fetch_column() === 0, "This email is already in use by another user.")
 		);
 		
 		if (!$assertion->isTrue())
 			Modal::displayAndExit($assertion->getFailureMessage());
 		
-		Database::query("INSERT INTO user VALUES (?, ?, ?);", "sss", $user->getUsername(), $user->getEmail(), $user->getPassword());
-		Database::disconnect();
+		$connection->query("INSERT INTO user VALUES (?, ?, ?);", "sss", $user->getUsername(), $user->getEmail(), $user->getPassword());
 	}
 	catch (Exception $ex) {
 		Modal::displayAndExit("An error occurred while trying to communicate with the database ({$ex->getMessage()}).");
+	}
+	finally {
+		if (isset($connection)) {
+			$connection->disconnect();
+		}
 	}
 	
 	$_SESSION[User::class] = $user;
