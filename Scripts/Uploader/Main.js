@@ -106,7 +106,6 @@ function cancelUploadedFile(){
 }
 function calcCountUploaded (){
     const uploadedCount = userFiles.length;
-    console.log(uploadedCount)
     uploadedStatus.innerHTML = uploadedCount.toString();
 }
 // [+] Events
