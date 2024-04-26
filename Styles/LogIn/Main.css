@@ -22,6 +22,11 @@ body{
     justify-content: center;
     align-items: center;
 }
+.swal2-shown, .swal2-height-auto{
+    height: 100vh;
+    width: 100%;
+    display: flex;
+}
 /*---Modal Config---*/
 .modal{
     position: fixed;
