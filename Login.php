@@ -158,7 +158,7 @@ function logUserIn(): void {
 		
 		$_SESSION[User::class] = new User($row["Username"], $row["Email"], $row["Password"], false);
 	}
-	catch (Exception $ex) {
+	catch (DatabaseException $ex) {
 		Modal::displayAndExit("An error occurred while trying to communicate with the database ({$ex->getMessage()}).");
 	}
 	finally {

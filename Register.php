@@ -155,7 +155,7 @@ function storeUser(): void {
 		
 		$connection->query("INSERT INTO user VALUES (?, ?, ?);", "sss", $user->getUsername(), $user->getEmail(), $user->getPassword());
 	}
-	catch (Exception $ex) {
+	catch (DatabaseException $ex) {
 		Modal::displayAndExit("An error occurred while trying to communicate with the database ({$ex->getMessage()}).");
 	}
 	finally {
