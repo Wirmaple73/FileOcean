@@ -20,12 +20,14 @@ class DatabaseConnection {
 		}
 	}
 	
-	public function query(string $query, string $parameterFormat, mixed ...$parameters): mysqli_result|false {
+	public function query(string $query, string $parameterFormat = null, mixed ...$parameters): mysqli_result|false {
 		if ($this->connection == null)
 			throw new DatabaseException("No connection to the database is opened yet.");
 		
 		$stmt = new mysqli_stmt($this->connection, $query);
-		$stmt->bind_param($parameterFormat, ...$parameters);
+		
+		if ($parameterFormat != null)
+			$stmt->bind_param($parameterFormat, ...$parameters);
 		
 		if (!$stmt->execute())
 			throw new DatabaseException("An unknown error occurred while trying to execute the specified query.");
