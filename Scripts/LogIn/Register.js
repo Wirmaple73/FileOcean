@@ -1,5 +1,7 @@
 // [+] Variables
 const acceptTermBtn = $.querySelector(".form-option__input");
+const emailInput = $.querySelector(".input-box__input[data-name='email']");
+const duplicateEmailCheckerAPI = "API/DuplicateEmailChecker.php";
 
 // [+] Functions
 function checkInputValidation(){
@@ -7,7 +9,6 @@ function checkInputValidation(){
     let username, email, pass, passS2;
     let isMatch = false;
     if(hasAcceptTerm){
-        acceptTermBtn.nextElementSibling.classList.remove("form-option__text--invalid");
         inputElems.forEach((input) => {
             (input.dataset.name === "username") && (username = inputValidate.call(input, usernameValidateRegEx, "The entered username is invalid.", false));
             (input.dataset.name === "email") && (email = inputValidate.call(input, emailValidateRegEx, "The entered email address is invalid.", false));
@@ -27,6 +28,8 @@ function checkInputValidation(){
     }else{
         acceptTermBtn.nextElementSibling.classList.add("form-option__text--invalid");
     }
+
+
 }
 function acceptTermHandler(){
     if(acceptTermBtn.checked){
@@ -36,6 +39,40 @@ function acceptTermHandler(){
         subButton.classList.remove("sub-button--active");
     }
 }
+function duplicateEmailChecker(){
+    let emailValue;
+    if(emailValidateRegEx.test(emailInput.value.trim())){
+        emailValue = emailInput.value.trim();
+    }
+
+    if(emailValue){
+        let emailJson = {
+            email : emailValue
+        }
+        let fetchToDuplicateEmail = fetch(duplicateEmailCheckerAPI, {
+            method : "POST",
+            headers : {
+                "Content-type" : "application/json"
+            },
+            body : JSON.stringify(emailJson)
+        });
+
+        fetchToDuplicateEmail.then(async (resolved) => {
+            if(resolved.status === 200){
+                let apiRequest = await resolved.json();
+                if(!apiRequest.is_unique){
+                    showModal("The email you entered has already been exist",false);
+                    invalidInput(emailInput);
+                    isOk = false;
+                }else{
+                    validInput(emailInput);
+                    isOk = true;
+                }
+            }
+        })
+    }
+}
+
 // [+] Events
 inputElems.forEach((input) => {
     if(input.dataset.name === "passwordS2"){
@@ -44,5 +81,7 @@ inputElems.forEach((input) => {
         });
     }
 });
+
 acceptTermBtn.addEventListener("input", acceptTermHandler);
 subButton.addEventListener("click", checkInputValidation);
+emailInput.addEventListener("blur", duplicateEmailChecker);
