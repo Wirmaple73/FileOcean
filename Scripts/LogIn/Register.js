@@ -1,7 +1,7 @@
 // [+] Variables
 const acceptTermBtn = $.querySelector(".form-option__input");
 const emailInput = $.querySelector(".input-box__input[data-name='email']");
-const duplicateEmailCheckerAPI = "API/DuplicateEmailChecker.php";
+const duplicateEmailCheckerAPI = "API/DuplicateUserDataChecker.php";
 
 // [+] Functions
 function checkInputValidation(){
@@ -47,7 +47,8 @@ function duplicateEmailChecker(){
 
     if(emailValue){
         let emailJson = {
-            email : emailValue
+            dataType: "email",
+            value: emailValue
         }
         let fetchToDuplicateEmail = fetch(duplicateEmailCheckerAPI, {
             method : "POST",
@@ -60,8 +61,8 @@ function duplicateEmailChecker(){
         fetchToDuplicateEmail.then(async (resolved) => {
             if(resolved.status === 200){
                 let apiRequest = await resolved.json();
-                if(!apiRequest.is_unique){
-                    showModal("The email you entered has already been exist",false);
+                if(!apiRequest.isUnique){
+                    showModal("The entered email is already in use by another user.", false);
                     invalidInput(emailInput);
                     isOk = false;
                 }else{
